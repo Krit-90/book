@@ -1,0 +1,2 @@
+org.hsqldb.jdbc.JDBCDriver
+jdbc:hsqldb:file:db/library
