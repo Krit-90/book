@@ -8,7 +8,7 @@ public class AppConnect {
 	private static final String url ="jdbc:hsqldb:file:src/main/resources/db/library";
 	private static final String driver ="org.hsqldb.jdbcDriver";
 	private static final String user = "SA";
-	private static final String password = " ";
+	private static final String password = "";
 	
 	public Connection getConnection() {
 		Connection connection = null;
