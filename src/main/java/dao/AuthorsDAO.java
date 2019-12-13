@@ -2,11 +2,9 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import libraryapp.Authors;
 
 public interface AuthorsDAO {
-	
 	//create
 	void add(Authors authors) throws SQLException;
 	

@@ -6,13 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import dao.AuthorsDAO;
 import libraryapp.AppConnect;
 import libraryapp.Authors;
 
 public class AuthorsSQL extends AppConnect implements AuthorsDAO {
-	
 	Connection connection = getConnection();
 	
 	
