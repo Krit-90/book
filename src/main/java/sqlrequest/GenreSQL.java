@@ -90,8 +90,8 @@ Connection connection = getConnection();
 		try {
 			pr = connection.prepareStatement(sql);
 			
-			pr.setString(2, genre.getType());
-			pr.setLong(1, genre.getId());
+			pr.setString(1, genre.getType());
+			pr.setLong(2, genre.getId());
 			pr.executeUpdate();
 		} catch (SQLException e) {e.printStackTrace();
 		} finally {

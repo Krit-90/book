@@ -20,7 +20,6 @@ public class Genre {
 		this.type = type;
 	}
 	public Genre(Long id, String type) {
-		super();
 		this.id = id;
 		this.type = type;
 	}

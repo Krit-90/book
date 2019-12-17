@@ -23,7 +23,7 @@ Connection connection = getConnection();
 			pr.setLong(1, book.getId());
 			pr.setString(2, book.getTitle());
 			pr.setString(3, book.getCoop());
-			pr.setString(4, book.getYear());
+			pr.setInt(4, book.getYear());
 			pr.setString(5, book.getCity());
 
 			pr.executeUpdate();
@@ -52,7 +52,7 @@ Connection connection = getConnection();
 				book.setId(result.getLong("ID"));
 				book.setTitle(result.getString("TITLE"));
 				book.setCoop(result.getString("COOP"));
-				book.setYear(result.getString("YEAR"));
+				book.setYear(result.getInt("YEAR"));
 				book.setCity(result.getString("City"));
 				bookList.add(book);
 			}
@@ -79,8 +79,8 @@ Connection connection = getConnection();
 			book.setId(result.getLong("ID"));
 			book.setTitle(result.getString("TITLE"));
 			book.setCoop(result.getString("COOP"));
-			book.setYear(result.getString("YEAR"));
-			book.setYear(result.getString("CITY"));
+			book.setYear(result.getInt("YEAR"));
+			book.setCity(result.getString("CITY"));
 			
 			pr.executeUpdate();
 		} catch (SQLException e) {e.printStackTrace();
@@ -100,7 +100,7 @@ Connection connection = getConnection();
 			
 			pr.setString(1, book.getTitle());
 			pr.setString(2, book.getCoop());
-			pr.setString(3, book.getYear());
+			pr.setInt(3, book.getYear());
 			pr.setString(4, book.getCity());
 			pr.setLong(5, book.getId());
 			pr.executeUpdate();

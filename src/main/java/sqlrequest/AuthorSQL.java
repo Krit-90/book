@@ -1,34 +1,29 @@
 package sqlrequest;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import dao.AuthorsDAO;
 import libraryapp.AppConnect;
-import libraryapp.Authors;
+import libraryapp.Author;
 
-public class AuthorsSQL extends AppConnect implements AuthorsDAO {
+public class AuthorSQL extends AppConnect implements AuthorsDAO {
 	Connection connection = getConnection();
 	
 	
 	@Override
-	public void add(Authors authors) throws SQLException {
+	public void add(Author author) throws SQLException {
 		PreparedStatement pr = null;
-		//Запрос не проходит, хотя подключение есть
-		String sql = "DROP TABLE OK";// более наглядный и простой запрос для проверки
-				//"INSERT INTO AUTHORS("ID", "NAME", "SURNAME", "FATHERNAME" )VALUES ( ?, ?, ?, ?)";
+		String sql = "INSERT INTO AUTHORS(ID, NAME, SURNAME, FATHERNAME) VALUES ( ?, ?, ?, ?)";
 		try {
 			System.out.println(connection.isClosed());
 			connection.setAutoCommit(true);
 			pr = connection.prepareStatement(sql);			
 			
-			//pr.setLong(1, authors.getId());
-			//pr.setString(2, authors.getName());
-			//pr.setString(3, authors.getSurname());
-			//pr.setString(4, authors.getFathername());
+			pr.setLong(1, author.getId());
+			pr.setString(2, author.getName());
+			pr.setString(3, author.getSurname());
+			pr.setString(4, author.getFathername());
 			pr.executeUpdate();
 			connection.commit();
 			System.out.println("success");
@@ -41,23 +36,23 @@ public class AuthorsSQL extends AppConnect implements AuthorsDAO {
 	}
 
 	@Override
-	public List<Authors> getAll() throws SQLException {
+	public List<Author> getAll() throws SQLException {
 		PreparedStatement pr = null;
 		
-		List<Authors> authorsList = new ArrayList<Authors>();
+		List<Author> authorList = new ArrayList<Author>();
 		
 		String sql = "SELECT ID, NAME, SURNAME, FATHERNAME FROM AUTHORS";
 		try {
 			pr = connection.prepareStatement(sql);
-			ResultSet result = pr.executeQuery(sql);
+			ResultSet result = pr.executeQuery();
 			while(result.next()) {
-				Authors authors = new Authors();
+				Author author = new Author();
 				
-				authors.setId(result.getLong("ID"));
-				authors.setName(result.getString("NAME"));
-				authors.setSurname(result.getString("SURNAME"));
-				authors.setFathername(result.getString("FATHERNAME"));
-				authorsList.add(authors);
+				author.setId(result.getLong("ID"));
+				author.setName(result.getString("NAME"));
+				author.setSurname(result.getString("SURNAME"));
+				author.setFathername(result.getString("FATHERNAME"));
+				authorList.add(author);
 			}
 		} catch (SQLException e) {e.printStackTrace();
 		} finally {
@@ -65,12 +60,12 @@ public class AuthorsSQL extends AppConnect implements AuthorsDAO {
 			connection.close();
 		}
 		
-		return authorsList;
+		return authorList;
 	}
 
 	@Override
-	public Authors getById(Long id) throws SQLException{
-		Authors authors = new Authors();
+	public Author getById(Long id) throws SQLException{
+		Author author = new Author();
 		PreparedStatement pr = null;
 		String sql = "SELECT ID, NAME, SURNAME, FATHERNAME FROM AUTHORS WHERE ID = ?";
 		
@@ -78,32 +73,31 @@ public class AuthorsSQL extends AppConnect implements AuthorsDAO {
 			pr = connection.prepareStatement(sql);
 			pr.setLong(1, id);
 			ResultSet result = pr.executeQuery();
-			
-			authors.setId(result.getLong("ID"));
-			authors.setName(result.getString("NAME"));
-			authors.setSurname(result.getString("SURNAME"));
-			authors.setFathername(result.getString("FATHERNAME"));
-			
+			author.setId(result.getLong("ID"));
+			author.setName(result.getString("NAME"));
+			author.setSurname(result.getString("SURNAME"));
+			author.setFathername(result.getString("FATHERNAME"));
+
 			pr.executeUpdate();
 		} catch (SQLException e) {e.printStackTrace();
 		} finally {
 			pr.close();
 			connection.close();
 		}
-		return authors;
+		return author;
 	}
 
 	@Override
-	public void update(Authors authors) throws SQLException {
+	public void update(Author author) throws SQLException {
 		PreparedStatement pr = null;
 		String sql = "UPDATE AUTHORS SET NAME = '?', SURNAME = '?', FATHERNAME = '?' WHERE ID = ?";
 		try {
 			pr = connection.prepareStatement(sql);
 			
-			pr.setString(1, authors.getName());
-			pr.setString(2, authors.getSurname());
-			pr.setString(3, authors.getFathername());
-			pr.setLong(4, authors.getId());
+			pr.setString(1, author.getName());
+			pr.setString(2, author.getSurname());
+			pr.setString(3, author.getFathername());
+			pr.setLong(4, author.getId());
 			pr.executeUpdate();
 		} catch (SQLException e) {e.printStackTrace();
 		} finally {
@@ -114,12 +108,12 @@ public class AuthorsSQL extends AppConnect implements AuthorsDAO {
 	}
 
 	@Override
-	public void remove(Authors authors) throws SQLException {
+	public void remove(Author author) throws SQLException {
 		PreparedStatement pr = null;
 		String sql = "DELETE FROM AUTHORS WHERE ID = ?";
 		try {
 			pr = connection.prepareStatement(sql);
-			pr.setLong(1, authors.getId());
+			pr.setLong(1, author.getId());
 			pr.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

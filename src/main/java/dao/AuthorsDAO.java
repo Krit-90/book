@@ -2,22 +2,23 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import libraryapp.Authors;
+
+import libraryapp.Author;
 
 public interface AuthorsDAO {
 	//create
-	void add(Authors authors) throws SQLException;
+	void add(Author author) throws SQLException;
 	
 	//read
-	List<Authors> getAll() throws SQLException;
+	List<Author> getAll() throws SQLException;
 	
-	Authors getById(Long id) throws SQLException;
+	Author getById(Long id) throws SQLException;
 	
 	//update
-	void update(Authors authors) throws SQLException;
+	void update(Author author) throws SQLException;
 	
 	//delete
-	void remove(Authors authors) throws SQLException;
+	void remove(Author author) throws SQLException;
 	
 
 }

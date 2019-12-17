@@ -1,6 +1,6 @@
 package libraryapp;
 
-public class Authors{
+public class Author {
 
 	private Long id;
 	private String name;
@@ -31,10 +31,9 @@ public class Authors{
 	public void setFathername(String fathername) {
 		this.fathername = fathername;
 	}
-	public Authors() {
+	public Author() {
 	}
-	public Authors(Long id, String name, String surname, String fathername) {
-		super();
+	public Author(Long id, String name, String surname, String fathername) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
@@ -42,7 +41,7 @@ public class Authors{
 	}
 	@Override
 	public String toString() {
-		return "Authors [id=" + id 
+		return "Authors [id=" + id
 				+ ", name=" + name 
 				+ ", surname=" + surname 
 				+ ", fathername=" + fathername + "]";

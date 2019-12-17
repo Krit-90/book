@@ -5,7 +5,7 @@ public class Book{
 	private Long id;
 	private String title;
 	private String coop;
-	private String year;
+	private int year;
 	private String city;
 
 	
@@ -24,10 +24,10 @@ public class Book{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getYear() {
+	public int getYear() {
 		return year;
 	}
-	public void setYear(String year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 	public String getCity() {
@@ -43,8 +43,7 @@ public class Book{
 		this.coop = coop;
 	}
 
-	public Book(Long id, String title, String year, String city, String coop) {
-		super();
+	public Book(Long id, String title, int year, String city, String coop) {
 		this.id = id;
 		this.title = title;
 		this.year = year;
@@ -56,7 +55,7 @@ public class Book{
 	public String toString() {
 		return "Book [id=" + id 
 				+ ", title=" + title 
-				+ ", year=" + year 
+				+ ", year=" + year
 				+ ", city=" + city 
 				+ ", coop=" + coop + "]";
 	}

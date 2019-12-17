@@ -4,26 +4,21 @@ import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.data.Binder;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.ui.ValueChangeMode;
-import com.vaadin.shared.ui.grid.GridConstants;
-import com.vaadin.shared.ui.grid.GridState;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import libraryapp.Authors;
+import libraryapp.Author;
 import libraryapp.Book;
 import libraryapp.Genre;
-import sqlrequest.AuthorsSQL;
+import sqlrequest.AuthorSQL;
 import sqlrequest.BookSQL;
 import sqlrequest.GenreSQL;
 
@@ -38,12 +33,12 @@ import sqlrequest.GenreSQL;
 	@Theme("mytheme")
 	public class MyUI extends UI {
 		
-		private AuthorsSQL aSQL = new AuthorsSQL();
+		private AuthorSQL aSQL = new AuthorSQL();
 		private BookSQL bSQL = new BookSQL();
 		private GenreSQL gSQL = new GenreSQL();
 	    private TextField filterText = new TextField();
 	    private Grid<Book> gridB = new Grid<Book>();
-	    private Grid<Authors> gridA = new Grid<Authors>();
+	    private Grid<Author> gridA = new Grid<Author>();
 	    private Grid<Genre> gridG = new Grid<Genre>();
 		 @Override
 		    protected void init(VaadinRequest vaadinRequest) {
