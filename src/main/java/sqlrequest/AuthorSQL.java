@@ -97,9 +97,7 @@ public class AuthorSQL extends AppConnect implements AuthorsDAO {
 		} finally {
 			connection.close();
 		}
-		
 	}
-
 	@Override
 	public void remove(Author author) throws SQLException {
 		String sql = "DELETE FROM AUTHORS WHERE ID = ?";
@@ -111,8 +109,5 @@ public class AuthorSQL extends AppConnect implements AuthorsDAO {
 		} finally {
 			connection.close();
 		}
-		
-		
 	}
-
 }
