@@ -2,7 +2,7 @@ package libraryapp;
 
 public class Author {
 
-	private Long id;
+	private long id;
 	private String name;
 	private String surname;
 	private String fathername;
@@ -10,7 +10,7 @@ public class Author {
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -33,7 +33,7 @@ public class Author {
 	}
 	public Author() {
 	}
-	public Author(Long id, String name, String surname, String fathername) {
+	public Author(long id, String name, String surname, String fathername) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;

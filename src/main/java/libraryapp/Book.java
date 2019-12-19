@@ -2,7 +2,7 @@ package libraryapp;
 
 public class Book{
 
-	private Long id;
+	private long id;
 	private String title;
 	private String coop;
 	private int year;
@@ -15,7 +15,7 @@ public class Book{
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getTitle() {
@@ -43,7 +43,7 @@ public class Book{
 		this.coop = coop;
 	}
 
-	public Book(Long id, String title, int year, String city, String coop) {
+	public Book(long id, String title, int year, String city, String coop) {
 		this.id = id;
 		this.title = title;
 		this.year = year;

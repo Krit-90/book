@@ -2,7 +2,7 @@ package libraryapp;
 
 public class Genre {
 
-	private Long id;
+	private long id;
 	private String type;
 	public Genre() {
 		
@@ -10,7 +10,7 @@ public class Genre {
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getType() {
@@ -19,7 +19,7 @@ public class Genre {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Genre(Long id, String type) {
+	public Genre(long id, String type) {
 		this.id = id;
 		this.type = type;
 	}
