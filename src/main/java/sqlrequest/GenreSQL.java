@@ -45,8 +45,9 @@ Connection connection = getConnection();
 		try (PreparedStatement pr = connection.prepareStatement(sql)) {
 			pr.setLong(1, id);
 			ResultSet result = pr.executeQuery();
-			genre = extractGenreFromResult(result);
-			pr.executeUpdate();
+			if(result.next()) {
+				genre = extractGenreFromResult(result);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -64,7 +65,7 @@ Connection connection = getConnection();
 
 	@Override
 	public void update(Genre genre) throws SQLException {
-		String sql = "UPDATE GENRE SET TYPE = '?' WHERE ID = ?";
+		String sql = "UPDATE GENRE SET TYPE = ? WHERE ID = ?";
 		try (PreparedStatement pr = connection.prepareStatement(sql)) {
 			pr.setString(1, genre.getType());
 			pr.setLong(2, genre.getId());

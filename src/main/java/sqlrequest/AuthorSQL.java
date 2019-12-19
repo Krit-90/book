@@ -13,7 +13,6 @@ public class AuthorSQL extends AppConnect implements AuthorsDAO {
 	public void add(Author author) throws SQLException {
 		String sql = "INSERT INTO AUTHORS(ID, NAME, SURNAME, FATHERNAME) VALUES ( ?, ?, ?, ?)";
 		try (PreparedStatement pr = connection.prepareStatement(sql)) {
-			System.out.println(connection.isClosed());
 			pr.setLong(1, author.getId());
 			pr.setString(2, author.getName());
 			pr.setString(3, author.getSurname());
@@ -25,7 +24,6 @@ public class AuthorSQL extends AppConnect implements AuthorsDAO {
 			connection.close();
 		}
 	}
-
 	public void drop() throws SQLException {
 		String sql = "DROP TABLE OK";
 		try (PreparedStatement pr = connection.prepareStatement(sql)) {
@@ -37,8 +35,6 @@ public class AuthorSQL extends AppConnect implements AuthorsDAO {
 			connection.close();
 		}
 	}
-
-
 	@Override
 	public List<Author> getAll() throws SQLException {
 		List<Author> authorList = new ArrayList<Author>();
@@ -54,7 +50,6 @@ public class AuthorSQL extends AppConnect implements AuthorsDAO {
 		}
 		return authorList;
 	}
-
 	@Override
 	public Author getById(Long id) throws SQLException{
 		Author author = null;
@@ -63,9 +58,9 @@ public class AuthorSQL extends AppConnect implements AuthorsDAO {
 		try (PreparedStatement pr = connection.prepareStatement(sql)) {
 			pr.setLong(1, id);
 			ResultSet result = pr.executeQuery();
-			author = extractAuthorFromResult(result);
-
-			pr.executeUpdate();
+			if(result.next()){
+				author = extractAuthorFromResult(result);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -85,7 +80,7 @@ public class AuthorSQL extends AppConnect implements AuthorsDAO {
 
 	@Override
 	public void update(Author author) throws SQLException {
-		String sql = "UPDATE AUTHORS SET NAME = '?', SURNAME = '?', FATHERNAME = '?' WHERE ID = ?";
+		String sql = "UPDATE AUTHORS SET NAME = ?, SURNAME = ?, FATHERNAME = ? WHERE ID = ?";
 		try (PreparedStatement pr = connection.prepareStatement(sql)) {
 			pr.setString(1, author.getName());
 			pr.setString(2, author.getSurname());

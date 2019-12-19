@@ -32,7 +32,7 @@ Connection connection = getConnection();
 		try (PreparedStatement pr = connection.prepareStatement(sql)) {
 			ResultSet result = pr.executeQuery(sql);
 			while(result.next()) {
-				bookList.add(getBookFromResult(result));
+				bookList.add(exractBookFromResult(result));
 			}
 		} catch (SQLException e) {e.printStackTrace();
 		} finally {
@@ -41,7 +41,7 @@ Connection connection = getConnection();
 		return bookList;
 	}
 
-	private Book getBookFromResult(ResultSet result) throws SQLException {
+	private Book exractBookFromResult(ResultSet result) throws SQLException {
 		Book book = new Book();
 		book.setId(result.getLong("ID"));
 		book.setTitle(result.getString("TITLE"));
@@ -58,8 +58,9 @@ Connection connection = getConnection();
 		try (PreparedStatement pr = connection.prepareStatement(sql)) {
 			pr.setLong(1, id);
 			ResultSet result = pr.executeQuery();
-			book = getBookFromResult(result);
-			pr.executeUpdate();
+			if(result.next()) {
+				book = exractBookFromResult(result);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -69,7 +70,7 @@ Connection connection = getConnection();
 	}
 	@Override
 	public void update(Book book) throws SQLException {
-		String sql = "UPDATE BOOK SET TITLE = '?', COOP = '?', YEAR = '?', CITY = '?' WHERE ID = ?";
+		String sql = "UPDATE BOOK SET TITLE = ?, COOP = ?, YEAR = ?, CITY = ? WHERE ID = ?";
 		try (PreparedStatement pr = connection.prepareStatement(sql)) {
 			pr.setString(1, book.getTitle());
 			pr.setString(2, book.getCoop());
