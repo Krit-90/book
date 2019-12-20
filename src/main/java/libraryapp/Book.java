@@ -7,11 +7,9 @@ public class Book{
 	private String coop;
 	private int year;
 	private String city;
+	private Author author;
+	private Genre genre;
 
-	
-	public Book() {
-	
-	}
 	public Long getId() {
 		return id;
 	}
@@ -42,22 +40,48 @@ public class Book{
 	public void setCoop(String coop) {
 		this.coop = coop;
 	}
+	public Author getAuthor() {
+		return author;
+	}
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+	public Genre getGenre() {
+		return genre;
+	}
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}
 
-	public Book(long id, String title, int year, String city, String coop) {
+	public Book() {
+	}
+	public Book(long id, String title, String coop, int year, String city, Author author, Genre genre) {
 		this.id = id;
 		this.title = title;
+		this.coop = coop;
 		this.year = year;
 		this.city = city;
-		this.coop = coop;
+		this.author = author;
+		this.genre = genre;
 	}
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id 
-				+ ", title=" + title 
-				+ ", year=" + year
-				+ ", city=" + city 
-				+ ", coop=" + coop + "]";
+		return new StringBuilder().append("Book [id=")
+				.append(id)
+				.append(", title=")
+				.append(title)
+				.append(", year=")
+				.append(year)
+				.append(", city=")
+				.append(city)
+				.append(", coop=")
+				.append(coop)
+				.append(", authors=")
+				.append(author)
+				.append(", genre=")
+				.append(genre)
+				.append("]").toString();
 	}
-	
+
 }
